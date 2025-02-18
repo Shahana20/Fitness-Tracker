@@ -4,12 +4,12 @@ import * as Yup from "yup";
 
 const PersonalInfo = ({ nextStep, formData }) => {
   const formik = useFormik({
-    initialValues: formData || { name: "", age: "", gender: "", goal: "" },
+    initialValues: formData || { name: "", age: "", gender: "", fitness_goal: "" },
     validationSchema: Yup.object({
       name: Yup.string().required("Name is required"),
       age: Yup.number().positive().integer().required("Age is required"),
       gender: Yup.string().required("Gender is required"),
-      goal: Yup.string().required("Fitness goal is required"),
+      fitness_goal: Yup.string().required("Fitness goal is required"),
     }),
     onSubmit: (values) => {
         console.log("Personal Info Submitted:", values);
@@ -58,8 +58,8 @@ const PersonalInfo = ({ nextStep, formData }) => {
         select
         label="Fitness Goal"
         {...formik.getFieldProps("goal")}
-        error={formik.touched.goal && Boolean(formik.errors.goal)}
-        helperText={formik.touched.goal && formik.errors.goal}
+        error={formik.touched.fitness_goal && Boolean(formik.errors.goal)}
+        helperText={formik.touched.fitness_goal && formik.errors.fitness_goal}
         fullWidth
         sx={{ mt: 2 }}
       >

@@ -5,17 +5,17 @@ import * as Yup from "yup";
 const WorkoutAndNutrition = ({ prevStep, submitForm }) => {
   const formik = useFormik({
     initialValues: {
-      workoutType: "",
-      workoutFrequency: "",
-      needDietPlan: "",
+      workout_type: "",
+      workout_frequency: "",
+      need_diet_plan: "",
     },
     validationSchema: Yup.object({
-      workoutType: Yup.string().required("Required"),
-      workoutFrequency: Yup.number()
+      workout_type: Yup.string().required("Required"),
+      workout_frequency: Yup.number()
         .min(1, "Must be at least once per week")
         .max(7, "Cannot be more than 7 days")
         .required("Required"),
-      needDietPlan: Yup.string().required("Required"),
+      need_diet_plan: Yup.string().required("Required"),
     }),
     onSubmit: (values) => {
       console.log("Workout & Nutrition Data:", values); 
@@ -30,9 +30,9 @@ const WorkoutAndNutrition = ({ prevStep, submitForm }) => {
       <TextField
         select
         label="Preferred Workout Type"
-        {...formik.getFieldProps("workoutType")}
-        error={formik.touched.workoutType && Boolean(formik.errors.workoutType)}
-        helperText={formik.touched.workoutType && formik.errors.workoutType}
+        {...formik.getFieldProps("workout_type")}
+        error={formik.touched.workout_type && Boolean(formik.errors.workout_type)}
+        helperText={formik.touched.workout_type && formik.errors.workout_type}
         fullWidth
         sx={{ mt: 2 }}
       >
@@ -45,9 +45,9 @@ const WorkoutAndNutrition = ({ prevStep, submitForm }) => {
       <TextField
         label="Workout Frequency (Days/Week)"
         type="number"
-        {...formik.getFieldProps("workoutFrequency")}
-        error={formik.touched.workoutFrequency && Boolean(formik.errors.workoutFrequency)}
-        helperText={formik.touched.workoutFrequency && formik.errors.workoutFrequency}
+        {...formik.getFieldProps("workout_frequency")}
+        error={formik.touched.workout_frequency && Boolean(formik.errors.workout_frequency)}
+        helperText={formik.touched.workout_frequency && formik.errors.workout_frequency}
         fullWidth
         sx={{ mt: 2 }}
       />
@@ -55,9 +55,9 @@ const WorkoutAndNutrition = ({ prevStep, submitForm }) => {
       <TextField
         select
         label="Do you need a diet plan?"
-        {...formik.getFieldProps("needDietPlan")}
-        error={formik.touched.needDietPlan && Boolean(formik.errors.needDietPlan)}
-        helperText={formik.touched.needDietPlan && formik.errors.needDietPlan}
+        {...formik.getFieldProps("need_diet_plan")}
+        error={formik.touched.need_diet_plan && Boolean(formik.errors.need_diet_plan)}
+        helperText={formik.touched.need_diet_plan && formik.errors.need_diet_plan}
         fullWidth
         sx={{ mt: 2 }}
       >

@@ -5,20 +5,20 @@ import * as Yup from "yup";
 const HealthAndLifestyle = ({ nextStep, prevStep }) => {
   const formik = useFormik({
     initialValues: {
-      waterIntake: "",
-      sleepHours: "",
-      dietaryPreference: "",
-      medicalConditions: "",
+      water_intake: "",
+      sleep_hours: "",
+      dietary_preference: "",
+      medical_conditions: "",
     },
     validationSchema: Yup.object({
-      waterIntake: Yup.number()
+      water_intake: Yup.number()
         .min(0, "Enter a valid amount")
         .required("Required"),
-      sleepHours: Yup.number()
+      sleep_hours: Yup.number()
         .min(0, "Enter a valid number of hours")
         .max(24, "Must be less than 24")
         .required("Required"),
-      dietaryPreference: Yup.string().required("Required"),
+      dietary_preference: Yup.string().required("Required"),
     }),
     onSubmit: (values) => {
       console.log("Health & Lifestyle Data:", values); 
@@ -33,9 +33,9 @@ const HealthAndLifestyle = ({ nextStep, prevStep }) => {
       <TextField
         label="Water Intake (Liters/Day)"
         type="number"
-        {...formik.getFieldProps("waterIntake")}
-        error={formik.touched.waterIntake && Boolean(formik.errors.waterIntake)}
-        helperText={formik.touched.waterIntake && formik.errors.waterIntake}
+        {...formik.getFieldProps("water_intake")}
+        error={formik.touched.water_intake && Boolean(formik.errors.water_intake)}
+        helperText={formik.touched.water_intake && formik.errors.water_intake}
         fullWidth
         sx={{ mt: 2 }}
       />
@@ -43,9 +43,9 @@ const HealthAndLifestyle = ({ nextStep, prevStep }) => {
       <TextField
         label="Sleep Hours (Per Night)"
         type="number"
-        {...formik.getFieldProps("sleepHours")}
-        error={formik.touched.sleepHours && Boolean(formik.errors.sleepHours)}
-        helperText={formik.touched.sleepHours && formik.errors.sleepHours}
+        {...formik.getFieldProps("sleep_hours")}
+        error={formik.touched.sleep_hours && Boolean(formik.errors.sleep_hours)}
+        helperText={formik.touched.sleep_hours && formik.errors.sleep_hours}
         fullWidth
         sx={{ mt: 2 }}
       />
@@ -53,9 +53,9 @@ const HealthAndLifestyle = ({ nextStep, prevStep }) => {
       <TextField
         select
         label="Dietary Preference"
-        {...formik.getFieldProps("dietaryPreference")}
-        error={formik.touched.dietaryPreference && Boolean(formik.errors.dietaryPreference)}
-        helperText={formik.touched.dietaryPreference && formik.errors.dietaryPreference}
+        {...formik.getFieldProps("dietary_preference")}
+        error={formik.touched.dietary_preference && Boolean(formik.errors.dietary_preference)}
+        helperText={formik.touched.dietary_preference && formik.errors.dietary_preference}
         fullWidth
         sx={{ mt: 2 }}
       >
@@ -66,7 +66,7 @@ const HealthAndLifestyle = ({ nextStep, prevStep }) => {
 
       <TextField
         label="Medical Conditions (Optional)"
-        {...formik.getFieldProps("medicalConditions")}
+        {...formik.getFieldProps("medical_conditions")}
         fullWidth
         sx={{ mt: 2 }}
       />

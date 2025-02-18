@@ -7,8 +7,8 @@ const FitnessStatus = ({ nextStep, prevStep, formData }) => {
     initialValues: formData || {
       height: "",
       weight: "",
-      activityLevel: "",
-      stepCount: "",
+      activity_level: "",
+      step_count: "",
     },
     validationSchema: Yup.object({
       height: Yup.number()
@@ -17,8 +17,8 @@ const FitnessStatus = ({ nextStep, prevStep, formData }) => {
       weight: Yup.number()
         .positive("Enter a valid weight")
         .required("Weight is required"),
-      activityLevel: Yup.string().required("Activity Level is required"),
-      stepCount: Yup.number()
+      activity_level: Yup.string().required("Activity Level is required"),
+      step_count: Yup.number()
         .positive("Enter a valid step count")
         .required("Step count is required"),
     }),
@@ -55,9 +55,9 @@ const FitnessStatus = ({ nextStep, prevStep, formData }) => {
       <TextField
         select
         label="Activity Level"
-        {...formik.getFieldProps("activityLevel")}
-        error={formik.touched.activityLevel && Boolean(formik.errors.activityLevel)}
-        helperText={formik.touched.activityLevel && formik.errors.activityLevel}
+        {...formik.getFieldProps("activity_level")}
+        error={formik.touched.activity_level && Boolean(formik.errors.activity_level)}
+        helperText={formik.touched.activity_level && formik.errors.activity_level}
         fullWidth
         sx={{ mt: 2 }}
       >
@@ -70,9 +70,9 @@ const FitnessStatus = ({ nextStep, prevStep, formData }) => {
       <TextField
         label="Daily Step Count"
         type="number"
-        {...formik.getFieldProps("stepCount")}
-        error={formik.touched.stepCount && Boolean(formik.errors.stepCount)}
-        helperText={formik.touched.stepCount && formik.errors.stepCount}
+        {...formik.getFieldProps("step_count")}
+        error={formik.touched.step_count && Boolean(formik.errors.step_count)}
+        helperText={formik.touched.step_count && formik.errors.step_count}
         fullWidth
         sx={{ mt: 2 }}
       />

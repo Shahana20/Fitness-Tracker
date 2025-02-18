@@ -48,7 +48,7 @@ ActiveRecord::Schema[8.0].define(version: 2025_02_18_072043) do
     t.bigint "user_id", null: false
     t.float "water_intake"
     t.float "sleep_hours"
-    t.string "dietary_preference"
+    t.string "dietary_preference" 
     t.text "medical_conditions"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false

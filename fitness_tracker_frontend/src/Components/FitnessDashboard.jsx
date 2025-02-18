@@ -10,15 +10,15 @@ const FitnessDashboard = () => {
   const location = useLocation();
   const formData = location.state?.formData || {};
 
-  const { height, weight, activityLevel, stepCount, waterIntake, sleepHours } = formData;
+  const { height, weight, activity_level, step_count, water_intake, sleep_hours } = formData;
 
   const bmi = weight && height ? (weight / ((height / 100) * (height / 100))).toFixed(1) : "--";
   const bmiStatus =
     bmi < 18.5 ? "Underweight" : bmi < 25 ? "Normal" : bmi < 30 ? "Overweight" : "Obese";
 
   const activityData = [
-    { name: "Steps Taken", value: stepCount || 0 },
-    { name: "Remaining", value: Math.max(10000 - (stepCount || 0), 0) },
+    { name: "Steps Taken", value: step_count || 0 },
+    { name: "Remaining", value: Math.max(10000 - (step_count || 0), 0) },
   ];
   const COLORS = ["#0088FE", "#FFBB28"];
 
@@ -64,15 +64,15 @@ const FitnessDashboard = () => {
             <Typography variant="h6">Water Intake</Typography>
             <Typography
               variant="h4"
-              color={waterIntake >= 2 ? "green" : "red"}
+              color={water_intake >= 2 ? "green" : "red"}
               sx={{ fontWeight: "bold" }}
             >
-              {waterIntake}L
+              {water_intake}L
             </Typography>
             <Typography variant="body2">Recommended: 2-3L</Typography>
             <LinearProgress
               variant="determinate"
-              value={(waterIntake / 3) * 100}
+              value={(water_intake / 3) * 100}
               sx={{ mt: 1, height: 8, borderRadius: 4, backgroundColor: "#E3F2FD" }}
             />
           </CardContent>
@@ -85,15 +85,15 @@ const FitnessDashboard = () => {
             <Typography variant="h6">Sleep Hours</Typography>
             <Typography
               variant="h4"
-              color={sleepHours >= 7 ? "green" : "red"}
+              color={sleep_hours >= 7 ? "green" : "red"}
               sx={{ fontWeight: "bold" }}
             >
-              {sleepHours}h
+              {sleep_hours}h
             </Typography>
             <Typography variant="body2">Recommended: 7-9h</Typography>
             <LinearProgress
               variant="determinate"
-              value={(sleepHours / 9) * 100}
+              value={(sleep_hours / 9) * 100}
               sx={{ mt: 1, height: 8, borderRadius: 4, backgroundColor: "#E3F2FD" }}
             />
           </CardContent>
@@ -110,12 +110,12 @@ const FitnessDashboard = () => {
             <DirectionsWalkIcon sx={{ fontSize: 40, color: "#FF5722" }} />
             <Typography variant="h6">Steps Count</Typography>
             <Typography variant="h4" sx={{ fontWeight: "bold", color: "#0288D1" }}>
-              {stepCount || 0}
+              {step_count || 0}
             </Typography>
             <Typography variant="body2">Goal: 10,000 Steps</Typography>
             <LinearProgress
               variant="determinate"
-              value={(stepCount / 10000) * 100}
+              value={(step_count / 10000) * 100}
               sx={{ mt: 1, height: 8, borderRadius: 4, backgroundColor: "#E3F2FD" }}
             />
           </CardContent>
@@ -137,7 +137,7 @@ const FitnessDashboard = () => {
               </PieChart>
             </ResponsiveContainer>
             <Typography variant="h6" sx={{ mt: 2 }}>
-              Activity Level: <span style={{ color: "#1976D2" }}>{activityLevel || "N/A"}</span>
+              Activity Level: <span style={{ color: "#1976D2" }}>{activity_level || "N/A"}</span>
             </Typography>
           </CardContent>
         </Card>
