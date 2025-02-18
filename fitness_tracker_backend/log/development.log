@@ -154,3 +154,92 @@ Processing by Api::V1::UsersController#create as */*
 Completed 201 Created in 129ms (Views: 1.0ms | ActiveRecord: 57.8ms (5 queries, 0 cached) | GC: 0.0ms)
 
 
+Started POST "/api/v1/users" for ::1 at 2025-02-18 14:30:30 +0530
+  [1m[36mActiveRecord::SchemaMigration Load (2.2ms)[0m  [1m[34mSELECT "schema_migrations"."version" FROM "schema_migrations" ORDER BY "schema_migrations"."version" ASC /*application='FitnessTrackerBackend'*/[0m
+Processing by Api::V1::UsersController#create as */*
+  Parameters: {"user"=>{"personal_info_attributes"=>{"name"=>"John Doe", "age"=>30, "gender"=>"Male", "fitness_goal"=>"Lose weight"}, "fitness_status_attributes"=>{"height"=>180, "weight"=>75, "activity_level"=>"Moderate", "step_count"=>8000}, "health_info_attributes"=>{"water_intake"=>2.5, "sleep_hours"=>8, "dietary_preference"=>"Vegetarian", "medical_conditions"=>"None"}, "workout_plan_attributes"=>{"workout_type"=>"Cardio", "workout_frequency"=>"3 times a week", "need_diet_plan"=>"Yes"}}}
+  [1m[36mTRANSACTION (0.4ms)[0m  [1m[35mBEGIN /*action='create',application='FitnessTrackerBackend',controller='users'*/[0m
+  ↳ app/controllers/api/v1/users_controller.rb:4:in `create'
+  [1m[36mUser Create (4.1ms)[0m  [1m[32mINSERT INTO "users" ("name", "age", "gender", "email", "created_at", "updated_at") VALUES (NULL, NULL, NULL, NULL, '2025-02-18 09:00:30.889310', '2025-02-18 09:00:30.889310') RETURNING "id" /*action='create',application='FitnessTrackerBackend',controller='users'*/[0m
+  ↳ app/controllers/api/v1/users_controller.rb:4:in `create'
+  [1m[36mPersonalInfo Create (2.3ms)[0m  [1m[32mINSERT INTO "personal_infos" ("user_id", "name", "age", "gender", "fitness_goal", "created_at", "updated_at") VALUES (8, 'John Doe', 30, 'Male', 'Lose weight', '2025-02-18 09:00:30.897667', '2025-02-18 09:00:30.897667') RETURNING "id" /*action='create',application='FitnessTrackerBackend',controller='users'*/[0m
+  ↳ app/controllers/api/v1/users_controller.rb:4:in `create'
+  [1m[36mFitnessStatus Create (1.3ms)[0m  [1m[32mINSERT INTO "fitness_statuses" ("user_id", "height", "weight", "activity_level", "step_count", "created_at", "updated_at") VALUES (8, 180.0, 75.0, 'Moderate', 8000, '2025-02-18 09:00:30.904459', '2025-02-18 09:00:30.904459') RETURNING "id" /*action='create',application='FitnessTrackerBackend',controller='users'*/[0m
+  ↳ app/controllers/api/v1/users_controller.rb:4:in `create'
+  [1m[36mHealthInfo Create (2.1ms)[0m  [1m[32mINSERT INTO "health_infos" ("user_id", "water_intake", "sleep_hours", "dietary_preference", "medical_conditions", "created_at", "updated_at") VALUES (8, 2.5, 8.0, 'Vegetarian', 'None', '2025-02-18 09:00:30.912851', '2025-02-18 09:00:30.912851') RETURNING "id" /*action='create',application='FitnessTrackerBackend',controller='users'*/[0m
+  ↳ app/controllers/api/v1/users_controller.rb:4:in `create'
+  [1m[36mWorkoutPlan Create (1.3ms)[0m  [1m[32mINSERT INTO "workout_plans" ("user_id", "workout_type", "workout_frequency", "need_diet_plan", "created_at", "updated_at") VALUES (8, 'Cardio', '3 times a week', TRUE, '2025-02-18 09:00:30.920202', '2025-02-18 09:00:30.920202') RETURNING "id" /*action='create',application='FitnessTrackerBackend',controller='users'*/[0m
+  ↳ app/controllers/api/v1/users_controller.rb:4:in `create'
+  [1m[36mTRANSACTION (1.6ms)[0m  [1m[35mCOMMIT /*action='create',application='FitnessTrackerBackend',controller='users'*/[0m
+  ↳ app/controllers/api/v1/users_controller.rb:4:in `create'
+Completed 201 Created in 227ms (Views: 2.7ms | ActiveRecord: 44.7ms (5 queries, 0 cached) | GC: 0.0ms)
+
+
+Started POST "/api/v1/users" for ::1 at 2025-02-18 14:31:37 +0530
+Processing by Api::V1::UsersController#create as */*
+  Parameters: {"user"=>{"personal_info_attributes"=>{"name"=>"John Doe", "age"=>30, "gender"=>"Male", "fitness_goal"=>"Lose weight"}, "fitness_status_attributes"=>{"height"=>180, "weight"=>75, "activity_level"=>"Moderate", "step_count"=>8000}, "health_info_attributes"=>{"water_intake"=>2.5, "sleep_hours"=>8, "dietary_preference"=>"Vegetarian", "medical_conditions"=>"None"}, "workout_plan_attributes"=>{"workout_type"=>"Cardio", "workout_frequency"=>"3 times a week", "need_diet_plan"=>"Yes"}}}
+  [1m[36mTRANSACTION (0.3ms)[0m  [1m[35mBEGIN /*action='create',application='FitnessTrackerBackend',controller='users'*/[0m
+  ↳ app/controllers/api/v1/users_controller.rb:4:in `create'
+  [1m[36mUser Create (3.0ms)[0m  [1m[32mINSERT INTO "users" ("name", "age", "gender", "email", "created_at", "updated_at") VALUES (NULL, NULL, NULL, NULL, '2025-02-18 09:01:37.621768', '2025-02-18 09:01:37.621768') RETURNING "id" /*action='create',application='FitnessTrackerBackend',controller='users'*/[0m
+  ↳ app/controllers/api/v1/users_controller.rb:4:in `create'
+  [1m[36mPersonalInfo Create (0.5ms)[0m  [1m[32mINSERT INTO "personal_infos" ("user_id", "name", "age", "gender", "fitness_goal", "created_at", "updated_at") VALUES (9, 'John Doe', 30, 'Male', 'Lose weight', '2025-02-18 09:01:37.628184', '2025-02-18 09:01:37.628184') RETURNING "id" /*action='create',application='FitnessTrackerBackend',controller='users'*/[0m
+  ↳ app/controllers/api/v1/users_controller.rb:4:in `create'
+  [1m[36mFitnessStatus Create (0.5ms)[0m  [1m[32mINSERT INTO "fitness_statuses" ("user_id", "height", "weight", "activity_level", "step_count", "created_at", "updated_at") VALUES (9, 180.0, 75.0, 'Moderate', 8000, '2025-02-18 09:01:37.632261', '2025-02-18 09:01:37.632261') RETURNING "id" /*action='create',application='FitnessTrackerBackend',controller='users'*/[0m
+  ↳ app/controllers/api/v1/users_controller.rb:4:in `create'
+  [1m[36mHealthInfo Create (0.4ms)[0m  [1m[32mINSERT INTO "health_infos" ("user_id", "water_intake", "sleep_hours", "dietary_preference", "medical_conditions", "created_at", "updated_at") VALUES (9, 2.5, 8.0, 'Vegetarian', 'None', '2025-02-18 09:01:37.635847', '2025-02-18 09:01:37.635847') RETURNING "id" /*action='create',application='FitnessTrackerBackend',controller='users'*/[0m
+  ↳ app/controllers/api/v1/users_controller.rb:4:in `create'
+  [1m[36mWorkoutPlan Create (0.5ms)[0m  [1m[32mINSERT INTO "workout_plans" ("user_id", "workout_type", "workout_frequency", "need_diet_plan", "created_at", "updated_at") VALUES (9, 'Cardio', '3 times a week', TRUE, '2025-02-18 09:01:37.639300', '2025-02-18 09:01:37.639300') RETURNING "id" /*action='create',application='FitnessTrackerBackend',controller='users'*/[0m
+  ↳ app/controllers/api/v1/users_controller.rb:4:in `create'
+  [1m[36mTRANSACTION (0.7ms)[0m  [1m[35mCOMMIT /*action='create',application='FitnessTrackerBackend',controller='users'*/[0m
+  ↳ app/controllers/api/v1/users_controller.rb:4:in `create'
+Completed 201 Created in 58ms (Views: 0.9ms | ActiveRecord: 18.5ms (5 queries, 0 cached) | GC: 0.0ms)
+
+
+Started POST "/api/v1/users" for ::1 at 2025-02-18 14:31:57 +0530
+  
+SyntaxError (D:/Projects/fitness_tracker/fitness_tracker_backend/app/controllers/api/v1/users_controller.rb:7: syntax error, unexpected local variable or method, expecting '}'
+                personal_info: @user.personal_info,
+                ^~~~~~~~~~~~~
+):
+  
+app/controllers/api/v1/users_controller.rb:7: syntax error, unexpected local variable or method, expecting '}'
+Started POST "/api/v1/users" for ::1 at 2025-02-18 14:32:44 +0530
+Processing by Api::V1::UsersController#create as */*
+  Parameters: {"user"=>{"personal_info_attributes"=>{"name"=>"John Doe", "age"=>30, "gender"=>"Male", "fitness_goal"=>"Lose weight"}, "fitness_status_attributes"=>{"height"=>180, "weight"=>75, "activity_level"=>"Moderate", "step_count"=>8000}, "health_info_attributes"=>{"water_intake"=>2.5, "sleep_hours"=>8, "dietary_preference"=>"Vegetarian", "medical_conditions"=>"None"}, "workout_plan_attributes"=>{"workout_type"=>"Cardio", "workout_frequency"=>"3 times a week", "need_diet_plan"=>"Yes"}}}
+  [1m[36mTRANSACTION (0.2ms)[0m  [1m[35mBEGIN /*action='create',application='FitnessTrackerBackend',controller='users'*/[0m
+  ↳ app/controllers/api/v1/users_controller.rb:4:in `create'
+  [1m[36mUser Create (2.9ms)[0m  [1m[32mINSERT INTO "users" ("name", "age", "gender", "email", "created_at", "updated_at") VALUES (NULL, NULL, NULL, NULL, '2025-02-18 09:02:44.435027', '2025-02-18 09:02:44.435027') RETURNING "id" /*action='create',application='FitnessTrackerBackend',controller='users'*/[0m
+  ↳ app/controllers/api/v1/users_controller.rb:4:in `create'
+  [1m[36mPersonalInfo Create (0.5ms)[0m  [1m[32mINSERT INTO "personal_infos" ("user_id", "name", "age", "gender", "fitness_goal", "created_at", "updated_at") VALUES (10, 'John Doe', 30, 'Male', 'Lose weight', '2025-02-18 09:02:44.441147', '2025-02-18 09:02:44.441147') RETURNING "id" /*action='create',application='FitnessTrackerBackend',controller='users'*/[0m
+  ↳ app/controllers/api/v1/users_controller.rb:4:in `create'
+  [1m[36mFitnessStatus Create (0.5ms)[0m  [1m[32mINSERT INTO "fitness_statuses" ("user_id", "height", "weight", "activity_level", "step_count", "created_at", "updated_at") VALUES (10, 180.0, 75.0, 'Moderate', 8000, '2025-02-18 09:02:44.445528', '2025-02-18 09:02:44.445528') RETURNING "id" /*action='create',application='FitnessTrackerBackend',controller='users'*/[0m
+  ↳ app/controllers/api/v1/users_controller.rb:4:in `create'
+  [1m[36mHealthInfo Create (0.4ms)[0m  [1m[32mINSERT INTO "health_infos" ("user_id", "water_intake", "sleep_hours", "dietary_preference", "medical_conditions", "created_at", "updated_at") VALUES (10, 2.5, 8.0, 'Vegetarian', 'None', '2025-02-18 09:02:44.449831', '2025-02-18 09:02:44.449831') RETURNING "id" /*action='create',application='FitnessTrackerBackend',controller='users'*/[0m
+  ↳ app/controllers/api/v1/users_controller.rb:4:in `create'
+  [1m[36mWorkoutPlan Create (0.3ms)[0m  [1m[32mINSERT INTO "workout_plans" ("user_id", "workout_type", "workout_frequency", "need_diet_plan", "created_at", "updated_at") VALUES (10, 'Cardio', '3 times a week', TRUE, '2025-02-18 09:02:44.453183', '2025-02-18 09:02:44.453183') RETURNING "id" /*action='create',application='FitnessTrackerBackend',controller='users'*/[0m
+  ↳ app/controllers/api/v1/users_controller.rb:4:in `create'
+  [1m[36mTRANSACTION (0.5ms)[0m  [1m[35mCOMMIT /*action='create',application='FitnessTrackerBackend',controller='users'*/[0m
+  ↳ app/controllers/api/v1/users_controller.rb:4:in `create'
+Completed 201 Created in 57ms (Views: 1.4ms | ActiveRecord: 18.1ms (5 queries, 0 cached) | GC: 0.0ms)
+
+
+Started POST "/api/v1/users" for ::1 at 2025-02-18 14:32:57 +0530
+Processing by Api::V1::UsersController#create as */*
+  Parameters: {"user"=>{"personal_info_attributes"=>{"name"=>"John Doe", "age"=>30, "gender"=>"Male", "fitness_goal"=>"Lose weight"}, "fitness_status_attributes"=>{"height"=>180, "weight"=>75, "activity_level"=>"Moderate", "step_count"=>8000}, "health_info_attributes"=>{"water_intake"=>2.5, "sleep_hours"=>8, "dietary_preference"=>"Vegetarian", "medical_conditions"=>"None"}, "workout_plan_attributes"=>{"workout_type"=>"Cardio", "workout_frequency"=>"3 times a week", "need_diet_plan"=>"Yes"}}}
+  [1m[36mTRANSACTION (0.2ms)[0m  [1m[35mBEGIN /*action='create',application='FitnessTrackerBackend',controller='users'*/[0m
+  ↳ app/controllers/api/v1/users_controller.rb:4:in `create'
+  [1m[36mUser Create (3.1ms)[0m  [1m[32mINSERT INTO "users" ("name", "age", "gender", "email", "created_at", "updated_at") VALUES (NULL, NULL, NULL, NULL, '2025-02-18 09:02:57.651269', '2025-02-18 09:02:57.651269') RETURNING "id" /*action='create',application='FitnessTrackerBackend',controller='users'*/[0m
+  ↳ app/controllers/api/v1/users_controller.rb:4:in `create'
+  [1m[36mPersonalInfo Create (0.5ms)[0m  [1m[32mINSERT INTO "personal_infos" ("user_id", "name", "age", "gender", "fitness_goal", "created_at", "updated_at") VALUES (11, 'John Doe', 30, 'Male', 'Lose weight', '2025-02-18 09:02:57.658042', '2025-02-18 09:02:57.658042') RETURNING "id" /*action='create',application='FitnessTrackerBackend',controller='users'*/[0m
+  ↳ app/controllers/api/v1/users_controller.rb:4:in `create'
+  [1m[36mFitnessStatus Create (0.7ms)[0m  [1m[32mINSERT INTO "fitness_statuses" ("user_id", "height", "weight", "activity_level", "step_count", "created_at", "updated_at") VALUES (11, 180.0, 75.0, 'Moderate', 8000, '2025-02-18 09:02:57.663445', '2025-02-18 09:02:57.663445') RETURNING "id" /*action='create',application='FitnessTrackerBackend',controller='users'*/[0m
+  ↳ app/controllers/api/v1/users_controller.rb:4:in `create'
+  [1m[36mHealthInfo Create (0.7ms)[0m  [1m[32mINSERT INTO "health_infos" ("user_id", "water_intake", "sleep_hours", "dietary_preference", "medical_conditions", "created_at", "updated_at") VALUES (11, 2.5, 8.0, 'Vegetarian', 'None', '2025-02-18 09:02:57.670747', '2025-02-18 09:02:57.670747') RETURNING "id" /*action='create',application='FitnessTrackerBackend',controller='users'*/[0m
+  ↳ app/controllers/api/v1/users_controller.rb:4:in `create'
+  [1m[36mWorkoutPlan Create (0.5ms)[0m  [1m[32mINSERT INTO "workout_plans" ("user_id", "workout_type", "workout_frequency", "need_diet_plan", "created_at", "updated_at") VALUES (11, 'Cardio', '3 times a week', TRUE, '2025-02-18 09:02:57.676538', '2025-02-18 09:02:57.676538') RETURNING "id" /*action='create',application='FitnessTrackerBackend',controller='users'*/[0m
+  ↳ app/controllers/api/v1/users_controller.rb:4:in `create'
+  [1m[36mTRANSACTION (0.6ms)[0m  [1m[35mCOMMIT /*action='create',application='FitnessTrackerBackend',controller='users'*/[0m
+  ↳ app/controllers/api/v1/users_controller.rb:4:in `create'
+Completed 201 Created in 96ms (Views: 1.6ms | ActiveRecord: 21.7ms (5 queries, 0 cached) | GC: 0.0ms)
+
+
