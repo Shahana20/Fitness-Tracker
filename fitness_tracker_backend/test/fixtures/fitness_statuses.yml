@@ -1,0 +1,15 @@
+# Read about fixtures at https://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+one:
+  user: one
+  height: 1.5
+  weight: 1.5
+  activity_level: MyString
+  step_count: 1
+
+two:
+  user: two
+  height: 1.5
+  weight: 1.5
+  activity_level: MyString
+  step_count: 1

@@ -1,0 +1,53 @@
+  [1m[35mSQL (0.4ms)[0m  [1m[35mSET search_path TO public /*application='FitnessTrackerBackend'*/[0m
+  [1m[35m (188.5ms)[0m  [1m[35mCREATE DATABASE "fitness_tracker_backend_development" ENCODING = 'unicode' /*application='FitnessTrackerBackend'*/[0m
+  [1m[35mSQL (0.5ms)[0m  [1m[35mSET search_path TO public /*application='FitnessTrackerBackend'*/[0m
+  [1m[35m (675.5ms)[0m  [1m[35mCREATE DATABASE "fitness_tracker_backend_test" ENCODING = 'unicode' /*application='FitnessTrackerBackend'*/[0m
+  [1m[35m (0.3ms)[0m  [1m[34mSELECT pg_try_advisory_lock(2382155295381901620) /*application='FitnessTrackerBackend'*/[0m
+  [1m[36mActiveRecord::SchemaMigration Load (5.3ms)[0m  [1m[34mSELECT "schema_migrations"."version" FROM "schema_migrations" ORDER BY "schema_migrations"."version" ASC /*application='FitnessTrackerBackend'*/[0m
+  [1m[36mActiveRecord::InternalMetadata Load (4.1ms)[0m  [1m[34mSELECT * FROM "ar_internal_metadata" WHERE "ar_internal_metadata"."key" = 'environment' ORDER BY "ar_internal_metadata"."key" ASC LIMIT 1 /*application='FitnessTrackerBackend'*/[0m
+Migrating to CreateUsers (20250218071927)
+  [1m[36mTRANSACTION (0.5ms)[0m  [1m[35mBEGIN /*application='FitnessTrackerBackend'*/[0m
+  [1m[35m (38.9ms)[0m  [1m[35mCREATE TABLE "users" ("id" bigserial primary key, "created_at" timestamp(6) NOT NULL, "updated_at" timestamp(6) NOT NULL) /*application='FitnessTrackerBackend'*/[0m
+  [1m[36mTRANSACTION (0.6ms)[0m  [1m[31mROLLBACK /*application='FitnessTrackerBackend'*/[0m
+  [1m[35m (0.7ms)[0m  [1m[34mSELECT pg_advisory_unlock(2382155295381901620) /*application='FitnessTrackerBackend'*/[0m
+  [1m[35m (0.8ms)[0m  [1m[34mSELECT pg_try_advisory_lock(2382155295381901620) /*application='FitnessTrackerBackend'*/[0m
+  [1m[36mActiveRecord::SchemaMigration Load (3.0ms)[0m  [1m[34mSELECT "schema_migrations"."version" FROM "schema_migrations" ORDER BY "schema_migrations"."version" ASC /*application='FitnessTrackerBackend'*/[0m
+  [1m[36mActiveRecord::InternalMetadata Load (2.0ms)[0m  [1m[34mSELECT * FROM "ar_internal_metadata" WHERE "ar_internal_metadata"."key" = 'environment' ORDER BY "ar_internal_metadata"."key" ASC LIMIT 1 /*application='FitnessTrackerBackend'*/[0m
+Migrating to CreatePersonalInfos (20250218072022)
+  [1m[36mTRANSACTION (0.4ms)[0m  [1m[35mBEGIN /*application='FitnessTrackerBackend'*/[0m
+  [1m[35m (66.1ms)[0m  [1m[35mCREATE TABLE "personal_infos" ("id" bigserial primary key, "user_id" bigint NOT NULL, "name" character varying, "age" integer, "gender" character varying, "fitness_goal" character varying, "created_at" timestamp(6) NOT NULL, "updated_at" timestamp(6) NOT NULL, CONSTRAINT "fk_rails_796da13f22"
+FOREIGN KEY ("user_id")
+  REFERENCES "users" ("id")
+) /*application='FitnessTrackerBackend'*/[0m
+  [1m[35m (1.7ms)[0m  [1m[35mCREATE INDEX "index_personal_infos_on_user_id" ON "personal_infos" ("user_id") /*application='FitnessTrackerBackend'*/[0m
+  [1m[36mActiveRecord::SchemaMigration Create (0.9ms)[0m  [1m[32mINSERT INTO "schema_migrations" ("version") VALUES ('20250218072022') RETURNING "version" /*application='FitnessTrackerBackend'*/[0m
+  [1m[36mTRANSACTION (2.3ms)[0m  [1m[35mCOMMIT /*application='FitnessTrackerBackend'*/[0m
+Migrating to CreateFitnessStatuses (20250218072028)
+  [1m[36mTRANSACTION (0.9ms)[0m  [1m[35mBEGIN /*application='FitnessTrackerBackend'*/[0m
+  [1m[35m (28.6ms)[0m  [1m[35mCREATE TABLE "fitness_statuses" ("id" bigserial primary key, "user_id" bigint NOT NULL, "height" float, "weight" float, "activity_level" character varying, "step_count" integer, "created_at" timestamp(6) NOT NULL, "updated_at" timestamp(6) NOT NULL, CONSTRAINT "fk_rails_115d1f5b78"
+FOREIGN KEY ("user_id")
+  REFERENCES "users" ("id")
+) /*application='FitnessTrackerBackend'*/[0m
+  [1m[35m (2.2ms)[0m  [1m[35mCREATE INDEX "index_fitness_statuses_on_user_id" ON "fitness_statuses" ("user_id") /*application='FitnessTrackerBackend'*/[0m
+  [1m[36mActiveRecord::SchemaMigration Create (2.0ms)[0m  [1m[32mINSERT INTO "schema_migrations" ("version") VALUES ('20250218072028') RETURNING "version" /*application='FitnessTrackerBackend'*/[0m
+  [1m[36mTRANSACTION (1.3ms)[0m  [1m[35mCOMMIT /*application='FitnessTrackerBackend'*/[0m
+Migrating to CreateHealthInfos (20250218072037)
+  [1m[36mTRANSACTION (1.0ms)[0m  [1m[35mBEGIN /*application='FitnessTrackerBackend'*/[0m
+  [1m[35m (24.7ms)[0m  [1m[35mCREATE TABLE "health_infos" ("id" bigserial primary key, "user_id" bigint NOT NULL, "water_intake" float, "sleep_hours" float, "dietary_preference" character varying, "medical_conditions" text, "created_at" timestamp(6) NOT NULL, "updated_at" timestamp(6) NOT NULL, CONSTRAINT "fk_rails_c1ae98f8b2"
+FOREIGN KEY ("user_id")
+  REFERENCES "users" ("id")
+) /*application='FitnessTrackerBackend'*/[0m
+  [1m[35m (3.6ms)[0m  [1m[35mCREATE INDEX "index_health_infos_on_user_id" ON "health_infos" ("user_id") /*application='FitnessTrackerBackend'*/[0m
+  [1m[36mActiveRecord::SchemaMigration Create (0.7ms)[0m  [1m[32mINSERT INTO "schema_migrations" ("version") VALUES ('20250218072037') RETURNING "version" /*application='FitnessTrackerBackend'*/[0m
+  [1m[36mTRANSACTION (1.7ms)[0m  [1m[35mCOMMIT /*application='FitnessTrackerBackend'*/[0m
+Migrating to CreateWorkoutPlans (20250218072043)
+  [1m[36mTRANSACTION (0.8ms)[0m  [1m[35mBEGIN /*application='FitnessTrackerBackend'*/[0m
+  [1m[35m (21.2ms)[0m  [1m[35mCREATE TABLE "workout_plans" ("id" bigserial primary key, "user_id" bigint NOT NULL, "workout_type" character varying, "workout_frequency" character varying, "need_diet_plan" boolean, "created_at" timestamp(6) NOT NULL, "updated_at" timestamp(6) NOT NULL, CONSTRAINT "fk_rails_0cda40207f"
+FOREIGN KEY ("user_id")
+  REFERENCES "users" ("id")
+) /*application='FitnessTrackerBackend'*/[0m
+  [1m[35m (1.9ms)[0m  [1m[35mCREATE INDEX "index_workout_plans_on_user_id" ON "workout_plans" ("user_id") /*application='FitnessTrackerBackend'*/[0m
+  [1m[36mActiveRecord::SchemaMigration Create (0.7ms)[0m  [1m[32mINSERT INTO "schema_migrations" ("version") VALUES ('20250218072043') RETURNING "version" /*application='FitnessTrackerBackend'*/[0m
+  [1m[36mTRANSACTION (0.8ms)[0m  [1m[35mCOMMIT /*application='FitnessTrackerBackend'*/[0m
+  [1m[35m (0.7ms)[0m  [1m[34mSELECT pg_advisory_unlock(2382155295381901620) /*application='FitnessTrackerBackend'*/[0m
+  [1m[36mActiveRecord::SchemaMigration Load (0.7ms)[0m  [1m[34mSELECT "schema_migrations"."version" FROM "schema_migrations" ORDER BY "schema_migrations"."version" ASC /*application='FitnessTrackerBackend'*/[0m
