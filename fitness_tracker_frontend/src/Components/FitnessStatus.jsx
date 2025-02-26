@@ -1,4 +1,3 @@
-import { Box, Button, TextField, MenuItem, Typography } from "@mui/material";
 import { useFormik } from "formik";
 import * as Yup from "yup";
 
@@ -23,65 +22,70 @@ const FitnessStatus = ({ nextStep, prevStep, formData }) => {
         .required("Step count is required"),
     }),
     onSubmit: (values) => {
-      console.log("Fitness Status Submitted:", values); 
+      console.log("Fitness Status Submitted:", values);
       nextStep(values);
     },
   });
 
   return (
-    <Box component="form" onSubmit={formik.handleSubmit} sx={{ width: 300 }}>
-      <Typography variant="h5">Fitness Status</Typography>
+    <form onSubmit={formik.handleSubmit} style={{ width: "300px", margin: "auto" }}>
+      <h2 style={{ textAlign: "center" }}>Fitness Status</h2>
 
-      <TextField
-        label="Height (cm)"
-        type="number"
-        {...formik.getFieldProps("height")}
-        error={formik.touched.height && Boolean(formik.errors.height)}
-        helperText={formik.touched.height && formik.errors.height}
-        fullWidth
-        sx={{ mt: 2 }}
-      />
+      <div style={{ marginTop: "10px" }}>
+        <label>Height (cm)</label>
+        <input
+          type="number"
+          {...formik.getFieldProps("height")}
+          style={{ width: "100%", padding: "8px", marginTop: "5px" }}
+        />
+        {formik.touched.height && formik.errors.height && (
+          <div style={{ color: "red", fontSize: "12px" }}>{formik.errors.height}</div>
+        )}
+      </div>
 
-      <TextField
-        label="Weight (kg)"
-        type="number"
-        {...formik.getFieldProps("weight")}
-        error={formik.touched.weight && Boolean(formik.errors.weight)}
-        helperText={formik.touched.weight && formik.errors.weight}
-        fullWidth
-        sx={{ mt: 2 }}
-      />
+      <div style={{ marginTop: "10px" }}>
+        <label>Weight (kg)</label>
+        <input
+          type="number"
+          {...formik.getFieldProps("weight")}
+          style={{ width: "100%", padding: "8px", marginTop: "5px" }}
+        />
+        {formik.touched.weight && formik.errors.weight && (
+          <div style={{ color: "red", fontSize: "12px" }}>{formik.errors.weight}</div>
+        )}
+      </div>
 
-      <TextField
-        select
-        label="Activity Level"
-        {...formik.getFieldProps("activity_level")}
-        error={formik.touched.activity_level && Boolean(formik.errors.activity_level)}
-        helperText={formik.touched.activity_level && formik.errors.activity_level}
-        fullWidth
-        sx={{ mt: 2 }}
-      >
-        <MenuItem value="Sedentary">Sedentary</MenuItem>
-        <MenuItem value="Lightly Active">Lightly Active</MenuItem>
-        <MenuItem value="Moderately Active">Moderately Active</MenuItem>
-        <MenuItem value="Very Active">Very Active</MenuItem>
-      </TextField>
+      <div style={{ marginTop: "10px" }}>
+        <label>Activity Level</label>
+        <select {...formik.getFieldProps("activity_level")} style={{ width: "100%", padding: "8px", marginTop: "5px" }}>
+          <option value="">Select Activity Level</option>
+          <option value="Sedentary">Sedentary</option>
+          <option value="Lightly Active">Lightly Active</option>
+          <option value="Moderately Active">Moderately Active</option>
+          <option value="Very Active">Very Active</option>
+        </select>
+        {formik.touched.activity_level && formik.errors.activity_level && (
+          <div style={{ color: "red", fontSize: "12px" }}>{formik.errors.activity_level}</div>
+        )}
+      </div>
 
-      <TextField
-        label="Daily Step Count"
-        type="number"
-        {...formik.getFieldProps("step_count")}
-        error={formik.touched.step_count && Boolean(formik.errors.step_count)}
-        helperText={formik.touched.step_count && formik.errors.step_count}
-        fullWidth
-        sx={{ mt: 2 }}
-      />
+      <div style={{ marginTop: "10px" }}>
+        <label>Daily Step Count</label>
+        <input
+          type="number"
+          {...formik.getFieldProps("step_count")}
+          style={{ width: "100%", padding: "8px", marginTop: "5px" }}
+        />
+        {formik.touched.step_count && formik.errors.step_count && (
+          <div style={{ color: "red", fontSize: "12px" }}>{formik.errors.step_count}</div>
+        )}
+      </div>
 
-      <Box sx={{ display: "flex", justifyContent: "space-between", mt: 3 }}>
-        <Button variant="outlined" onClick={prevStep}>Back</Button>
-        <Button type="submit" variant="contained">Next</Button>
-      </Box>
-    </Box>
+      <div style={{ display: "flex", justifyContent: "space-between", marginTop: "20px" }}>
+        <button type="button" onClick={prevStep} style={{ padding: "10px 20px", backgroundColor: "#ccc", border: "none", cursor: "pointer" }}>Back</button>
+        <button type="submit" style={{ padding: "10px 20px", backgroundColor: "#007bff", color: "#fff", border: "none", cursor: "pointer" }}>Next</button>
+      </div>
+    </form>
   );
 };
 

@@ -1,4 +1,3 @@
-import { Box, Button, TextField, MenuItem, Typography } from "@mui/material";
 import { useFormik } from "formik";
 import * as Yup from "yup";
 
@@ -21,61 +20,66 @@ const HealthAndLifestyle = ({ nextStep, prevStep }) => {
       dietary_preference: Yup.string().required("Required"),
     }),
     onSubmit: (values) => {
-      console.log("Health & Lifestyle Data:", values); 
+      console.log("Health & Lifestyle Data:", values);
       nextStep(values);
     },
   });
 
   return (
-    <Box component="form" onSubmit={formik.handleSubmit} sx={{ width: 300 }}>
-      <Typography variant="h5">Health & Lifestyle</Typography>
-
-      <TextField
-        label="Water Intake (Liters/Day)"
-        type="number"
-        {...formik.getFieldProps("water_intake")}
-        error={formik.touched.water_intake && Boolean(formik.errors.water_intake)}
-        helperText={formik.touched.water_intake && formik.errors.water_intake}
-        fullWidth
-        sx={{ mt: 2 }}
-      />
-
-      <TextField
-        label="Sleep Hours (Per Night)"
-        type="number"
-        {...formik.getFieldProps("sleep_hours")}
-        error={formik.touched.sleep_hours && Boolean(formik.errors.sleep_hours)}
-        helperText={formik.touched.sleep_hours && formik.errors.sleep_hours}
-        fullWidth
-        sx={{ mt: 2 }}
-      />
-
-      <TextField
-        select
-        label="Dietary Preference"
-        {...formik.getFieldProps("dietary_preference")}
-        error={formik.touched.dietary_preference && Boolean(formik.errors.dietary_preference)}
-        helperText={formik.touched.dietary_preference && formik.errors.dietary_preference}
-        fullWidth
-        sx={{ mt: 2 }}
-      >
-        <MenuItem value="Vegetarian">Vegetarian</MenuItem>
-        <MenuItem value="Non-Vegetarian">Non-Vegetarian</MenuItem>
-        <MenuItem value="Vegan">Vegan</MenuItem>
-      </TextField>
-
-      <TextField
-        label="Medical Conditions (Optional)"
-        {...formik.getFieldProps("medical_conditions")}
-        fullWidth
-        sx={{ mt: 2 }}
-      />
-
-      <Box sx={{ display: "flex", justifyContent: "space-between", mt: 3 }}>
-        <Button variant="outlined" onClick={prevStep}>Back</Button>
-        <Button type="submit" variant="contained">Next</Button>
-      </Box>
-    </Box>
+    <form onSubmit={formik.handleSubmit} style={{ width: "300px", fontFamily: "Arial, sans-serif" }}>
+      <h3 style={{ marginBottom: "10px" }}>Health & Lifestyle</h3>
+      
+      <div style={{ marginBottom: "10px" }}>
+        <label>Water Intake (Liters/Day)</label>
+        <input
+          type="number"
+          {...formik.getFieldProps("water_intake")}
+          style={{ width: "100%", padding: "8px", marginTop: "5px" }}
+        />
+        {formik.touched.water_intake && formik.errors.water_intake && (
+          <div style={{ color: "red", fontSize: "12px" }}>{formik.errors.water_intake}</div>
+        )}
+      </div>
+      
+      <div style={{ marginBottom: "10px" }}>
+        <label>Sleep Hours (Per Night)</label>
+        <input
+          type="number"
+          {...formik.getFieldProps("sleep_hours")}
+          style={{ width: "100%", padding: "8px", marginTop: "5px" }}
+        />
+        {formik.touched.sleep_hours && formik.errors.sleep_hours && (
+          <div style={{ color: "red", fontSize: "12px" }}>{formik.errors.sleep_hours}</div>
+        )}
+      </div>
+      
+      <div style={{ marginBottom: "10px" }}>
+        <label>Dietary Preference</label>
+        <select {...formik.getFieldProps("dietary_preference")} style={{ width: "100%", padding: "8px", marginTop: "5px" }}>
+          <option value="">Select</option>
+          <option value="Vegetarian">Vegetarian</option>
+          <option value="Non-Vegetarian">Non-Vegetarian</option>
+          <option value="Vegan">Vegan</option>
+        </select>
+        {formik.touched.dietary_preference && formik.errors.dietary_preference && (
+          <div style={{ color: "red", fontSize: "12px" }}>{formik.errors.dietary_preference}</div>
+        )}
+      </div>
+      
+      <div style={{ marginBottom: "10px" }}>
+        <label>Medical Conditions (Optional)</label>
+        <input
+          type="text"
+          {...formik.getFieldProps("medical_conditions")}
+          style={{ width: "100%", padding: "8px", marginTop: "5px" }}
+        />
+      </div>
+      
+      <div style={{ display: "flex", justifyContent: "space-between", marginTop: "15px" }}>
+        <button type="button" onClick={prevStep} style={{ padding: "8px 16px", background: "#ccc", border: "none", cursor: "pointer" }}>Back</button>
+        <button type="submit" style={{ padding: "8px 16px", background: "#007BFF", color: "white", border: "none", cursor: "pointer" }}>Next</button>
+      </div>
+    </form>
   );
 };
 

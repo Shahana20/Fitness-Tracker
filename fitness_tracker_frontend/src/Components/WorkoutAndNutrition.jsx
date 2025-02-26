@@ -1,4 +1,3 @@
-import { Box, Button, TextField, MenuItem, Typography } from "@mui/material";
 import { useFormik } from "formik";
 import * as Yup from "yup";
 
@@ -18,58 +17,115 @@ const WorkoutAndNutrition = ({ prevStep, submitForm }) => {
       need_diet_plan: Yup.string().required("Required"),
     }),
     onSubmit: (values) => {
-      console.log("Workout & Nutrition Data:", values); 
+      console.log("Workout & Nutrition Data:", values);
       submitForm(values);
     },
   });
 
   return (
-    <Box component="form" onSubmit={formik.handleSubmit} sx={{ width: 300 }}>
-      <Typography variant="h5">Workout & Nutrition</Typography>
+    <form
+      onSubmit={formik.handleSubmit}
+      style={{
+        width: "300px",
+        padding: "20px",
+        border: "1px solid #ccc",
+        borderRadius: "8px",
+        boxShadow: "2px 2px 10px rgba(0, 0, 0, 0.1)",
+      }}
+    >
+      <h2 style={{ textAlign: "center", marginBottom: "20px" }}>Workout & Nutrition</h2>
 
-      <TextField
-        select
-        label="Preferred Workout Type"
-        {...formik.getFieldProps("workout_type")}
-        error={formik.touched.workout_type && Boolean(formik.errors.workout_type)}
-        helperText={formik.touched.workout_type && formik.errors.workout_type}
-        fullWidth
-        sx={{ mt: 2 }}
-      >
-        <MenuItem value="Gym">Gym</MenuItem>
-        <MenuItem value="Yoga">Yoga</MenuItem>
-        <MenuItem value="Home Workouts">Home Workouts</MenuItem>
-        <MenuItem value="Running">Running</MenuItem>
-      </TextField>
+      <div style={{ marginBottom: "15px" }}>
+        <label>Preferred Workout Type</label>
+        <select
+          {...formik.getFieldProps("workout_type")}
+          style={{
+            width: "100%",
+            padding: "8px",
+            marginTop: "5px",
+            borderRadius: "5px",
+            border: "1px solid #ccc",
+          }}
+        >
+          <option value="">Select</option>
+          <option value="Gym">Gym</option>
+          <option value="Yoga">Yoga</option>
+          <option value="Home Workouts">Home Workouts</option>
+          <option value="Running">Running</option>
+        </select>
+        {formik.touched.workout_type && formik.errors.workout_type && (
+          <p style={{ color: "red", fontSize: "12px" }}>{formik.errors.workout_type}</p>
+        )}
+      </div>
 
-      <TextField
-        label="Workout Frequency (Days/Week)"
-        type="number"
-        {...formik.getFieldProps("workout_frequency")}
-        error={formik.touched.workout_frequency && Boolean(formik.errors.workout_frequency)}
-        helperText={formik.touched.workout_frequency && formik.errors.workout_frequency}
-        fullWidth
-        sx={{ mt: 2 }}
-      />
+      <div style={{ marginBottom: "15px" }}>
+        <label>Workout Frequency (Days/Week)</label>
+        <input
+          type="number"
+          {...formik.getFieldProps("workout_frequency")}
+          style={{
+            width: "100%",
+            padding: "8px",
+            marginTop: "5px",
+            borderRadius: "5px",
+            border: "1px solid #ccc",
+          }}
+        />
+        {formik.touched.workout_frequency && formik.errors.workout_frequency && (
+          <p style={{ color: "red", fontSize: "12px" }}>{formik.errors.workout_frequency}</p>
+        )}
+      </div>
 
-      <TextField
-        select
-        label="Do you need a diet plan?"
-        {...formik.getFieldProps("need_diet_plan")}
-        error={formik.touched.need_diet_plan && Boolean(formik.errors.need_diet_plan)}
-        helperText={formik.touched.need_diet_plan && formik.errors.need_diet_plan}
-        fullWidth
-        sx={{ mt: 2 }}
-      >
-        <MenuItem value="Yes">Yes</MenuItem>
-        <MenuItem value="No">No</MenuItem>
-      </TextField>
+      <div style={{ marginBottom: "20px" }}>
+        <label>Do you need a diet plan?</label>
+        <select
+          {...formik.getFieldProps("need_diet_plan")}
+          style={{
+            width: "100%",
+            padding: "8px",
+            marginTop: "5px",
+            borderRadius: "5px",
+            border: "1px solid #ccc",
+          }}
+        >
+          <option value="">Select</option>
+          <option value="Yes">Yes</option>
+          <option value="No">No</option>
+        </select>
+        {formik.touched.need_diet_plan && formik.errors.need_diet_plan && (
+          <p style={{ color: "red", fontSize: "12px" }}>{formik.errors.need_diet_plan}</p>
+        )}
+      </div>
 
-      <Box sx={{ display: "flex", justifyContent: "space-between", mt: 3 }}>
-        <Button variant="outlined" onClick={prevStep}>Back</Button>
-        <Button type="submit" variant="contained">Finish</Button>
-      </Box>
-    </Box>
+      <div style={{ display: "flex", justifyContent: "space-between" }}>
+        <button
+          type="button"
+          onClick={prevStep}
+          style={{
+            padding: "8px 15px",
+            border: "none",
+            borderRadius: "5px",
+            backgroundColor: "#ccc",
+            cursor: "pointer",
+          }}
+        >
+          Back
+        </button>
+        <button
+          type="submit"
+          style={{
+            padding: "8px 15px",
+            border: "none",
+            borderRadius: "5px",
+            backgroundColor: "#007BFF",
+            color: "white",
+            cursor: "pointer",
+          }}
+        >
+          Finish
+        </button>
+      </div>
+    </form>
   );
 };
 
