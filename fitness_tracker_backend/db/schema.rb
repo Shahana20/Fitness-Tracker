@@ -14,25 +14,6 @@ ActiveRecord::Schema[8.0].define(version: 2025_02_18_072043) do
   # These are extensions that must be enabled in order to support this database
   enable_extension "pg_catalog.plpgsql"
 
-  create_table "fitness_profiles", force: :cascade do |t|
-    t.bigint "user_id", null: false
-    t.string "fitness_goal"
-    t.decimal "height"
-    t.decimal "weight"
-    t.string "activity_level"
-    t.integer "step_count"
-    t.integer "water_intake"
-    t.integer "sleep_hours"
-    t.string "diet_preference"
-    t.text "medical_conditions"
-    t.string "workout_type"
-    t.string "workout_frequency"
-    t.boolean "need_diet_plan"
-    t.datetime "created_at", null: false
-    t.datetime "updated_at", null: false
-    t.index ["user_id"], name: "index_fitness_profiles_on_user_id"
-  end
-
   create_table "fitness_statuses", force: :cascade do |t|
     t.bigint "user_id", null: false
     t.float "height"
@@ -48,7 +29,7 @@ ActiveRecord::Schema[8.0].define(version: 2025_02_18_072043) do
     t.bigint "user_id", null: false
     t.float "water_intake"
     t.float "sleep_hours"
-    t.string "dietary_preference" 
+    t.string "dietary_preference"
     t.text "medical_conditions"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
@@ -78,14 +59,13 @@ ActiveRecord::Schema[8.0].define(version: 2025_02_18_072043) do
   create_table "workout_plans", force: :cascade do |t|
     t.bigint "user_id", null: false
     t.string "workout_type"
-    t.string "workout_frequency"
+    t.bigint "workout_frequency"
     t.boolean "need_diet_plan"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.index ["user_id"], name: "index_workout_plans_on_user_id"
   end
 
-  add_foreign_key "fitness_profiles", "users"
   add_foreign_key "fitness_statuses", "users"
   add_foreign_key "health_infos", "users"
   add_foreign_key "personal_infos", "users"

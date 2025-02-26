@@ -37,10 +37,58 @@ const StepperComponent = () => {
 
   const prevStep = () => setActiveStep((prevStep) => prevStep - 1);
 
-  const submitForm = (values) => {
-    setFormData((prev) => ({ ...prev, ...values }));
-    console.log("Final Form Data:", { ...formData, ...values });
-    navigate("/dashboard", { state: { formData: { ...formData, ...values } } });
+  const submitForm = async (values) => {
+    const finalData = {
+      user: {
+        personal_info_attributes: {
+          name: formData.name,
+          age: formData.age,
+          gender: formData.gender,
+          fitness_goal: formData.fitness_goal
+        },
+        fitness_status_attributes: {
+          height: formData.height,
+          weight: formData.weight,
+          activity_level: formData.activity_level,
+          step_count: formData.step_count
+        },
+        health_info_attributes: {
+          water_intake: formData.water_intake,
+          sleep_hours: formData.sleep_hours,
+          dietary_preference: formData.dietary_preference,
+          medical_conditions: formData.medical_conditions
+        },
+        workout_plan_attributes: {
+          workout_type: formData.workout_type,
+          workout_frequency: formData.workout_frequency,
+          need_diet_plan: formData.need_diet_plan
+        },
+      }
+
+    }
+    console.log("Final form data", finalData);
+    try {
+      const response = await fetch("http://localhost:3000/api/v1/users", {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+        },
+        body: JSON.stringify(finalData)
+      })
+      if (!response.ok) {
+        const errorData = await response.json();
+        throw new Error(errorData.errors.join(", "));
+      }
+  
+      const result = await response.json();
+      console.log("User created successfully:", result);
+  
+      navigate("/dashboard", { state: { formData: result } })
+    }
+    catch(error) {
+      console.error("Error processing request ", error.message);
+    }
+    
   };
 
   return (
