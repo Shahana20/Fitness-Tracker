@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[8.0].define(version: 2025_02_18_072043) do
+ActiveRecord::Schema[8.0].define(version: 2025_02_27_061926) do
   # These are extensions that must be enabled in order to support this database
   enable_extension "pg_catalog.plpgsql"
 
@@ -36,6 +36,14 @@ ActiveRecord::Schema[8.0].define(version: 2025_02_18_072043) do
     t.index ["user_id"], name: "index_health_infos_on_user_id"
   end
 
+  create_table "jwt_denylist", force: :cascade do |t|
+    t.string "jti", null: false
+    t.datetime "exp", null: false
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["jti"], name: "index_jwt_denylist_on_jti"
+  end
+
   create_table "personal_infos", force: :cascade do |t|
     t.bigint "user_id", null: false
     t.string "name"
@@ -49,11 +57,17 @@ ActiveRecord::Schema[8.0].define(version: 2025_02_18_072043) do
 
   create_table "users", force: :cascade do |t|
     t.string "name"
-    t.integer "age"
-    t.string "gender"
     t.string "email"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+    t.string "encrypted_password", default: "", null: false
+    t.string "reset_password_token"
+    t.datetime "reset_password_sent_at"
+    t.datetime "remember_created_at"
+    t.string "jti", null: false
+    t.index ["email"], name: "index_users_on_email", unique: true
+    t.index ["jti"], name: "index_users_on_jti", unique: true
+    t.index ["reset_password_token"], name: "index_users_on_reset_password_token", unique: true
   end
 
   create_table "workout_plans", force: :cascade do |t|
