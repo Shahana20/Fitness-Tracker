@@ -55,3 +55,4 @@ gem 'dotenv-rails', groups: [:development, :test]
 
 gem "devise", "~> 4.9"
 gem "devise-jwt", "~> 0.12.1"
+gem 'dry-configurable', '1.0.1'
