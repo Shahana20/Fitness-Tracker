@@ -1,3 +1,4 @@
 **/node_modules/
 **/tmp/
 fitness_tracker_backend/.env
+fitness_tracker_backend/log
